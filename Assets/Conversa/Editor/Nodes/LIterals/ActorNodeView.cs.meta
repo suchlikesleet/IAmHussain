@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 4102b7b6b4fb443b93e5afd98ca7e7cd
+timeCreated: 1641589677
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Nodes/LIterals/ActorNodeView.cs
+  uploadId: 635673

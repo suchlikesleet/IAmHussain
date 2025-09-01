@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: da0f406449d84e189be3cf9b74e0d19e
+timeCreated: 1654984402
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Runtime/Nodes/Blocks/MessageBlockNode.cs
+  uploadId: 635673

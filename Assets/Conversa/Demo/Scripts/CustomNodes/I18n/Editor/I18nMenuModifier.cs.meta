@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 83f223889c3d48784b63a7b766e8fb45
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Demo/Scripts/CustomNodes/I18n/Editor/I18nMenuModifier.cs
+  uploadId: 635673

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4c2af75b413b4c2ab43aa90f92b5a68c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Nodes/Basics/ConditionalNodeView.cs
+  uploadId: 635673

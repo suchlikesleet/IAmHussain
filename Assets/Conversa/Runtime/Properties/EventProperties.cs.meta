@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ddee93fa854d4d75882133ddbea48eb8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Runtime/Properties/EventProperties.cs
+  uploadId: 635673

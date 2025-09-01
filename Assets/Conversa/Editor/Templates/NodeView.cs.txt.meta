@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 36ee6e9e886d48468feefeb42f1ae80e
+timeCreated: 1643040175
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Templates/NodeView.cs.txt
+  uploadId: 635673

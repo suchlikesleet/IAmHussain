@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 3735bff3a90845f5a0380912cd297085
+timeCreated: 1636629218
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Nodes/Basics/RandomFlowNodeView.cs
+  uploadId: 635673

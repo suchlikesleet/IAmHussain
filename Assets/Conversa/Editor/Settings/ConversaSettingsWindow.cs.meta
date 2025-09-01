@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 400ace2ea37c433f918b9c588bcc6814
+timeCreated: 1641667313
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Settings/ConversaSettingsWindow.cs
+  uploadId: 635673

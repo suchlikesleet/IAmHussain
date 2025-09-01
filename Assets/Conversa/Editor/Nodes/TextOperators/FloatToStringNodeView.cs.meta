@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 85c9c2c1ca2c4df2ab163755b5b880d8
+timeCreated: 1637696355
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Nodes/TextOperators/FloatToStringNodeView.cs
+  uploadId: 635673

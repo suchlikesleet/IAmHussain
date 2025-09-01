@@ -37,6 +37,7 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
+    - Conversa.Runtime
     - Obious.Soap.Example
     - Obvious.Soap
     showAdvancedSettings: 0

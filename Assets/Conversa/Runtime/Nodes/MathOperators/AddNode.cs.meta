@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: d0ee8c5f94a3415b99e7e71e5f3d460e
+timeCreated: 1656118517
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Runtime/Nodes/MathOperators/AddNode.cs
+  uploadId: 635673

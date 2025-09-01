@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fe97e098c603595fa8f6eca494da6f12
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Demo/Actors/Player.asset
+  uploadId: 635673

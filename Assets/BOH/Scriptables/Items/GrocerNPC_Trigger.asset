@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e01a932e6179541a34399e02322236, type: 3}
+  m_Name: GrocerNPC_Trigger
+  m_EditorClassIdentifier: Assembly-CSharp::BOH.TriggerSO
+  triggerId: grocer_npc_trigger
+  type: 0
+  errandToOffer: {fileID: 11400000, guid: df3410280bcd6224eb2aeca56caf697e, type: 2}
+  itemsToGive:
+  - item: {fileID: 11400000, guid: c971d139d0d9c0e478092c37fd16a605, type: 2}
+    count: 1
+  activationDay: 1
+  startHour: 9
+  endHour: 22
+  isRepeatable: 0
+  npcName: Grocer
+  triggerRadius: 2
+  offerText: Ah, perfect timing! I have a parcel for Mr. Patel in the chawl. Could
+    you deliver it for me?
+  acceptText: Sure, I'll take it
+  declineText: Sorry, I'm busy
+  requiredTrustLevel: 0
+  prerequisiteErrand: {fileID: 0}

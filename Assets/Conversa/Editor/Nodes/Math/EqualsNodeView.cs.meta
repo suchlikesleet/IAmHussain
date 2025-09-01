@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c9178b81dd6d81ef8946399dbc0cc3c7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Nodes/Math/EqualsNodeView.cs
+  uploadId: 635673

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: af04e626de584c37b611bf5e1b5d54c9
+timeCreated: 1655134065
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Runtime/Interfaces/IPortable.cs
+  uploadId: 635673

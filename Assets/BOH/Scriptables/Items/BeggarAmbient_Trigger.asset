@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e01a932e6179541a34399e02322236, type: 3}
+  m_Name: BeggarAmbient_Trigger
+  m_EditorClassIdentifier: Assembly-CSharp::BOH.TriggerSO
+  triggerId: beggar_ambient_trigger
+  type: 2
+  errandToOffer: {fileID: 0}
+  activationDay: 1
+  startHour: 6
+  endHour: 22
+  isRepeatable: 1
+  npcName: Grocer
+  triggerRadius: 2
+  offerText: You notice an old man sitting by the road. 'I was once a professor,'
+    he says. 'Here, take this notebook. May it serve you well.'
+  acceptText: Thank you
+  declineText: No thanks
+  requiredTrustLevel: 0
+  prerequisiteErrand: {fileID: 0}

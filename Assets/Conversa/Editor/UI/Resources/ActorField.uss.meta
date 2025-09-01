@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 2c2403f91a0d4d879232a2d52f4bb6ac
+timeCreated: 1641556852
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/UI/Resources/ActorField.uss
+  uploadId: 635673

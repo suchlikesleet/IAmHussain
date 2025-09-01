@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 164b82dcee12444d98c5b8fb85eb5d25
+timeCreated: 1629050805
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Nodes/LogicalOperators/LogicalNodesMenuModifier.cs
+  uploadId: 635673

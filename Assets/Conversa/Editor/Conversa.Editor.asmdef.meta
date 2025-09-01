@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a1bc59d4d75e6d09dac82498bf6b3b1b
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Conversa.Editor.asmdef
+  uploadId: 635673

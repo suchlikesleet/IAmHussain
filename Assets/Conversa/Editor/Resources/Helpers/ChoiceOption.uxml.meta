@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 35aba04c44a543458bf4d9385d932635
+timeCreated: 1636124519
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Resources/Helpers/ChoiceOption.uxml
+  uploadId: 635673

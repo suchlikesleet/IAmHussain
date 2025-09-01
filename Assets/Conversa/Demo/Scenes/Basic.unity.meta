@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d8546822a639f6be988d33695785e555
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Demo/Scenes/Basic.unity
+  uploadId: 635673

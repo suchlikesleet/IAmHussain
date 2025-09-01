@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 78e2a17dcb764833a4487a831b92479b
+timeCreated: 1635855838
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Runtime/Utils/Sanitizer.cs
+  uploadId: 635673

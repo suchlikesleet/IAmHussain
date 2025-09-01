@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3b51c82f71f55622e90bd311501b354e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Demo/Locales/English Locale.asset
+  uploadId: 635673

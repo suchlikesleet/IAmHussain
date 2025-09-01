@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e02d6c74d2e07b48b56b555ae5c1fae, type: 3}
+  m_Name: ParcelDelivery_Errand
+  m_EditorClassIdentifier: Assembly-CSharp::BOH.ErrandSO
+  errandId: parcel_delivery
+  errandTitle: Grocer's Parcel
+  description: Deliver parcel to Mr. Patel
+  type: 0
+  startDay: 1
+  expiryDay: 2
+  startHour: 9
+  endHour: 20
+  itemsRequired:
+  - item: {fileID: 11400000, guid: c971d139d0d9c0e478092c37fd16a605, type: 2}
+    count: 1
+  energyCost: 1
+  blessingsReward: 8
+  moneyReward: 5
+  itemRewards: []
+  onTimeOutcome: Mr. Patel was grateful for the timely delivery.
+  lateOutcome: Mr. Patel received his parcel, though later than expected.
+  failOutcome: The parcel never reached Mr. Patel.
+  followUpErrand: {fileID: 0}

@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 89c65065adc14a87a320f3c24a1a01cd
+timeCreated: 1636118228
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Resources/Inspectors/ChoiceNode.uxml
+  uploadId: 635673

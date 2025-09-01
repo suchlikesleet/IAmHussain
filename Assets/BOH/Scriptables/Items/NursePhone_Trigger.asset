@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e01a932e6179541a34399e02322236, type: 3}
+  m_Name: NursePhone_Trigger
+  m_EditorClassIdentifier: Assembly-CSharp::BOH.TriggerSO
+  triggerId: medicinetrigger
+  type: 1
+  errandToOffer: {fileID: 11400000, guid: cbb121ebe507a184fa458f43dde8f603, type: 2}
+  itemsToGive: []
+  activationDay: 1
+  startHour: 9
+  endHour: 22
+  isRepeatable: 0
+  npcName: Nurse
+  triggerRadius: 2
+  offerText: We need medicine urgently this morning. Can you deliver it?
+  acceptText: Yes, I'll help
+  declineText: Sorry, not now
+  requiredTrustLevel: 0
+  prerequisiteErrand: {fileID: 0}

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 5ef124f1c05745729c9087e9813cc8f2
+timeCreated: 1641556679
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/UI/Resources/ActorProfileDropdown.uss
+  uploadId: 635673

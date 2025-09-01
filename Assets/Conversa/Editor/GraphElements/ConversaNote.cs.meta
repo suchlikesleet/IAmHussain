@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: ba81c7aa0372411bbdb5598f085d4e40
+timeCreated: 1638022330
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/GraphElements/ConversaNote.cs
+  uploadId: 635673

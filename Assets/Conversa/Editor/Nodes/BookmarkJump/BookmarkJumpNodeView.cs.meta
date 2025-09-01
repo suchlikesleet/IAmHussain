@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8dfe15e9da814c4ebb90c8fc8bdcdb09
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Nodes/BookmarkJump/BookmarkJumpNodeView.cs
+  uploadId: 635673

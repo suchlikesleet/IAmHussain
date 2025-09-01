@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: b9a7e2a5904b49789365d686d9da3f13
+timeCreated: 1641576957
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Runtime/Events/ActorChoiceEvent.cs
+  uploadId: 635673

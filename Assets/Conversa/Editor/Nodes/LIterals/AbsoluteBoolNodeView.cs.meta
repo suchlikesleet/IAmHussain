@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: ece5748ee0424ce19fe05f40e427fb46
+timeCreated: 1634168007
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Nodes/LIterals/AbsoluteBoolNodeView.cs
+  uploadId: 635673

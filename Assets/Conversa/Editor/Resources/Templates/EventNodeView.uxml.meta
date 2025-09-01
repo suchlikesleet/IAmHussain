@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 7cd26f85f98949b08be8ef2a1b87d7de
+timeCreated: 1641745476
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Resources/Templates/EventNodeView.uxml
+  uploadId: 635673

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: bbd69f365074454dbda0e37c7bf2e97e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Nodes/Basics/ChoiceNodeView.cs
+  uploadId: 635673

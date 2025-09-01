@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 0727290653f3415593f52ed3aeec3b2a
+timeCreated: 1637667389
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Nodes/LIterals/LiteralStringNodeView.cs
+  uploadId: 635673

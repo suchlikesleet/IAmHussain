@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: edc9455bd6e740a3a88beeceacded750
+timeCreated: 1637923526
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Runtime/Nodes/MathOperators/CompareNode.cs
+  uploadId: 635673

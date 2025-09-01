@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0fc63c45c81cba78586d8e54b79e5a8e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Resources/Skin.guiskin
+  uploadId: 635673

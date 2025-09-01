@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 3ba7609e2ead46828ebb13ad8528decf
+timeCreated: 1654968594
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Menus/BlockNodeSearchMenu.cs
+  uploadId: 635673

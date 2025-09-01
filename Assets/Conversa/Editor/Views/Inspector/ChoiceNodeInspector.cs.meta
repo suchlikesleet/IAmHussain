@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: b0196d273d78468cbf47b1f5d7365c08
+timeCreated: 1636118372
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Views/Inspector/ChoiceNodeInspector.cs
+  uploadId: 635673

@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: c1c7983de21546c3ad52992d07003e9e
+timeCreated: 1637670854
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Runtime/Nodes/TextOperators/ParseNode.cs
+  uploadId: 635673

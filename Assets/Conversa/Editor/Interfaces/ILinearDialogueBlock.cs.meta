@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 32eac0787f2841daa888c7f05aca4cbe
+timeCreated: 1655200031
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Interfaces/ILinearDialogueBlock.cs
+  uploadId: 635673

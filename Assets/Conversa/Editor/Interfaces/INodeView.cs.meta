@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 2ff1d3a43a904891b39ff58abc4bb764
+timeCreated: 1634149191
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Editor/Interfaces/INodeView.cs
+  uploadId: 635673

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 340b5ce0080e43849e26b3122987997c
+timeCreated: 1654964721
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Runtime/Data/LinearDialogueData.cs
+  uploadId: 635673

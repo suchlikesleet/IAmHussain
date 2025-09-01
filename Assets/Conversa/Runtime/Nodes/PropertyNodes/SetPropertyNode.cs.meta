@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 4c6ebe8be9a44fc884d33357a6b888fd
+timeCreated: 1637760327
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Runtime/Nodes/PropertyNodes/SetPropertyNode.cs
+  uploadId: 635673

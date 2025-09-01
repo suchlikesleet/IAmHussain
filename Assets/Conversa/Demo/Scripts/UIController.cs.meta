@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: b30877bb615141eaaa4038e53d09ba31
+timeCreated: 1641570373
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Demo/Scripts/UIController.cs
+  uploadId: 635673

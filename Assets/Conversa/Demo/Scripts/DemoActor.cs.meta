@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: ded540f255f849f59fad09af2bffbe67
+timeCreated: 1641552762
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/Demo/Scripts/DemoActor.cs
+  uploadId: 635673

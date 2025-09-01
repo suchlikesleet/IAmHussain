@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0ab5a0f6b2e9498fa39a71a2997b81fd
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192549
+  packageName: Conversa Dialogue System
+  packageVersion: 1.6.9
+  assetPath: Assets/Conversa/README.md
+  uploadId: 635673
