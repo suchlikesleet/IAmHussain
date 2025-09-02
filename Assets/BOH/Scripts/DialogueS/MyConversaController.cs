@@ -1,4 +1,5 @@
-using Conversa.Demo.Scripts;
+using BOH;
+using Conversa.Demo;
 using Conversa.Runtime;
 using Conversa.Runtime.Events;
 using Conversa.Runtime.Interfaces;
@@ -7,7 +8,7 @@ using UnityEngine;
 public class MyConversaController : MonoBehaviour
 {
     [SerializeField] private Conversation conversation;
-    [SerializeField] private UIController uiController;
+    [SerializeField] private MyUIController uiController;
 
     private ConversationRunner runner;
 
@@ -42,6 +43,9 @@ public class MyConversaController : MonoBehaviour
             case UserEvent userEvent:
                 HandleUserEvent(userEvent);
                 break;
+            case I18nEvent i18NEvent:
+                HandleI18nEvent(i18NEvent);
+                break;
             case EndEvent _:
                 HandleEnd();
                 break;
@@ -50,31 +54,46 @@ public class MyConversaController : MonoBehaviour
 
     private void HandleEnd()
     {
-        throw new System.NotImplementedException();
+        uiController.Hide();
     }
 
     private void HandleUserEvent(UserEvent userEvent)
     {
-        throw new System.NotImplementedException();
+        if (userEvent.Name == "Food bought")
+            Debug.Log("We can use this event to update the inventory, for instance");
+    }
+    
+    private void HandleI18nEvent(I18nEvent e)
+    {
+        var message = LocaleManager.Instance.Get(e.MessageKey);
+        uiController.ShowMessage(e.Actor.DisplayName, message, e.Actor.Avatar, () => e.Advance());
     }
 
-    private void HandleActorChoiceEvent(ActorChoiceEvent actorChoiceEvent)
+    private void HandleActorChoiceEvent(ActorChoiceEvent evt)
     {
-        throw new System.NotImplementedException();
+        var actorDisplayName = evt.Actor == null ? "" : evt.Actor.DisplayName;
+        if (evt.Actor is DemoActor avatarActor)
+            uiController.ShowChoice(actorDisplayName, evt.Message, avatarActor.Avatar, evt.Options);
+        else
+            uiController.ShowChoice(actorDisplayName, evt.Message, null, evt.Options);
     }
 
-    private void HandleActorMessageEvent(ActorMessageEvent actorMessageEvent)
+    private void HandleActorMessageEvent(ActorMessageEvent evt)
     {
-        throw new System.NotImplementedException();
+        var actorDisplayName = evt.Actor == null ? "" : evt.Actor.DisplayName;
+        if (evt.Actor is DemoActor avatarActor)
+            uiController.ShowMessage(actorDisplayName, evt.Message, avatarActor.Avatar, evt.Advance);
+        else
+            uiController.ShowMessage(actorDisplayName, evt.Message, null, evt.Advance);
     }
 
-    private void HandleMessage(MessageEvent messageEvent)
+    private void HandleMessage(MessageEvent e)
     {
-        throw new System.NotImplementedException();
+        uiController.ShowMessage(e.Actor, e.Message, null, () => e.Advance());
     }
 
-    private void HandleChoice(ChoiceEvent choiceEvent)
+    private void HandleChoice(ChoiceEvent e)
     {
-        throw new System.NotImplementedException();
+        uiController.ShowChoice(e.Actor, e.Message, null, e.Options);
     }
 }
