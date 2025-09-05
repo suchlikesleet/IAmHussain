@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Obvious.Soap;
+using Conversa.Runtime;
 
 namespace BOH
 {
@@ -15,6 +16,7 @@ namespace BOH
         
         [Header("References")]
         [SerializeField] private OfferPrompt offerPromptUI;
+        [SerializeField] private BOH.Conversa.MyConversaController conversaController;
         [SerializeField] private Transform playerTransform;
         
         [Header("State")]
@@ -42,6 +44,8 @@ namespace BOH
             timeSystem = FindObjectOfType<TimeSystem>();
             errandSystem = FindObjectOfType<ErrandSystem>();
             inventorySystem = FindObjectOfType<InventorySystem>(); // Add this
+            if (conversaController == null)
+                conversaController = FindFirstObjectByType<BOH.Conversa.MyConversaController>();
             
             // Find all NPCs in scene
             GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
@@ -176,6 +180,15 @@ namespace BOH
 
         private void ShowOffer(TriggerSO trigger, string source)
         {
+            // Phone triggers: prefer Conversa if available
+            if (trigger.type == TriggerSO.TriggerType.Phone && trigger.conversation != null && conversaController != null)
+            {
+                Debug.Log($"Starting Conversa conversation for trigger: {trigger.triggerId}");
+                conversaController.StartConversation(trigger.conversation);
+                triggeredToday.Add(trigger.triggerId);
+                return;
+            }
+
             if (offerPromptUI != null)
             {
                 offerPromptUI.ShowOffer(
@@ -231,17 +244,25 @@ namespace BOH
             if (trigger != null)
             {
                 Debug.Log($"Manually triggering: {triggerId}");
-                switch (trigger.type)
+                if (trigger.type == TriggerSO.TriggerType.Phone && trigger.conversation != null && conversaController != null)
                 {
-                    case TriggerSO.TriggerType.Phone:
-                        ShowPhoneOffer(trigger);
-                        break;
-                    case TriggerSO.TriggerType.NPC:
-                        ShowNPCOffer(trigger);
-                        break;
-                    case TriggerSO.TriggerType.Ambient:
-                        ShowAmbientOffer(trigger);
-                        break;
+                    conversaController.StartConversation(trigger.conversation);
+                    triggeredToday.Add(trigger.triggerId);
+                }
+                else
+                {
+                    switch (trigger.type)
+                    {
+                        case TriggerSO.TriggerType.Phone:
+                            ShowPhoneOffer(trigger);
+                            break;
+                        case TriggerSO.TriggerType.NPC:
+                            ShowNPCOffer(trigger);
+                            break;
+                        case TriggerSO.TriggerType.Ambient:
+                            ShowAmbientOffer(trigger);
+                            break;
+                    }
                 }
             }
         }

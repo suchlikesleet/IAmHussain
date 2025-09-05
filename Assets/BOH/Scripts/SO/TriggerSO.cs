@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Conversa.Runtime;
 
 namespace BOH
 {
@@ -31,7 +32,13 @@ namespace BOH
         public string npcName = "Grocer";
         public float triggerRadius = 2f;
         
-        [Header("Dialogue")]
+        [Header("Conversa")]
+        [Tooltip("If true and a Conversation is assigned, the trigger starts this Conversa flow instead of the legacy prompt.")]
+        public bool useConversa = false;
+        [Tooltip("Conversa Conversation asset to run when this trigger fires.")]
+        public Conversation conversation;
+
+        [Header("Legacy Prompt (fallback)")]
         [TextArea(3, 5)]
         public string offerText = "Can you help me with something?";
         public string acceptText = "Yes, I'll help";

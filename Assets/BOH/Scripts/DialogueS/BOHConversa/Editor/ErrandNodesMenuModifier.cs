@@ -19,6 +19,7 @@ namespace BOH.Conversa
             // Inventory
             tree.AddMenuEntry<InventoryCheckNodeView>("Inventory Check", 2);
             tree.AddMenuEntry<InventoryConsumeNodeView>("Inventory Consume", 2);
+            tree.AddMenuEntry<GiveItemNodeView>("Give Item", 2);
 
             // Contacts / Trust
             tree.AddMenuEntry<TrustChangeNodeView>("Trust Change", 2);
