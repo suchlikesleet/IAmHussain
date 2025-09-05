@@ -12,7 +12,6 @@ namespace BOH
             Active,
             Completed,
             Late,
-            Partial,
             Failed
         }
 
@@ -23,7 +22,6 @@ namespace BOH
             public ErrandStatus status = ErrandStatus.Active;
             public int acceptedDay;
             public float acceptedTime;
-            public int itemsDelivered = 0;
         }
 
         [Header("Events")]
@@ -35,26 +33,23 @@ namespace BOH
         [SerializeField] private List<string> completedErrandIds = new List<string>();
         
         private InventorySystem inventorySystem;
-        private ResourceSystem resourceSystem;
         private TimeSystem timeSystem;
         private int currentDay = 1;
 
         private void OnEnable()
         {
-            if (onDayEnd != null) onDayEnd.OnRaised+= CheckDayEndErrands;
+            if (onDayEnd != null) onDayEnd.OnRaised += CheckDayEndErrands;
         }
 
         private void OnDisable()
         {
-            if (onDayEnd != null) onDayEnd.OnRaised-= CheckDayEndErrands;
+            if (onDayEnd != null) onDayEnd.OnRaised -= CheckDayEndErrands;
         }
 
         private void Start()
         {
             inventorySystem = FindFirstObjectByType<InventorySystem>();
-            resourceSystem = FindFirstObjectByType<ResourceSystem>();
             timeSystem = FindFirstObjectByType<TimeSystem>();
-            
             Debug.Log("ErrandSystem initialized");
         }
 
@@ -110,7 +105,7 @@ namespace BOH
             Debug.Log($"Errand completed: {errandId} (Late: {isLate})");
             onErrandCompleted?.Raise();
             
-            // Check for follow-up
+            // Follow-up
             if (errand.errandData.followUpErrand != null)
             {
                 AddErrand(errand.errandData.followUpErrand);
@@ -121,53 +116,28 @@ namespace BOH
 
         private bool CheckRequirements(ErrandSO errand)
         {
-            // Check items
             foreach (var req in errand.itemsRequired)
             {
                 if (!inventorySystem.HasItem(req.item.itemId, req.count))
                     return false;
             }
-            
-            // Check energy
-            if (resourceSystem != null && resourceSystem.GetEnergy() < errand.energyCost)
-                return false;
-            
             return true;
         }
 
         private void ConsumeRequirements(ErrandSO errand)
         {
-            // Consume items
             foreach (var req in errand.itemsRequired)
             {
                 inventorySystem.ConsumeItem(req.item.itemId, req.count);
-            }
-            
-            // Consume energy
-            if (errand.energyCost > 0 && resourceSystem != null)
-            {
-                resourceSystem.SpendEnergy(errand.energyCost);
             }
         }
 
         private void GiveRewards(ErrandSO errand, bool isLate)
         {
-            // Reduce rewards if late
-            int blessingAmount = isLate ? errand.blessingsReward / 2 : errand.blessingsReward;
-            
-            if (resourceSystem != null)
-            {
-                if (blessingAmount > 0)
-                    resourceSystem.AddBlessings(blessingAmount);
-                
-                if (errand.moneyReward > 0)
-                    resourceSystem.AddMoney(errand.moneyReward);
-            }
-            
-            // Give item rewards
             foreach (var reward in errand.itemRewards)
             {
-                inventorySystem.AddItem(reward.item, reward.count);
+                if (reward.item != null)
+                    inventorySystem.AddItem(reward.item, reward.count);
             }
         }
 
@@ -186,7 +156,6 @@ namespace BOH
         {
             currentDay++;
             
-            // Check for expired errands
             var expired = activeErrands.Where(e => 
                 e.errandData.type == ErrandSO.ErrandType.Strict &&
                 e.acceptedDay < currentDay).ToList();
@@ -197,7 +166,6 @@ namespace BOH
                 Debug.Log($"Errand failed: {errand.errandData.errandTitle}");
             }
             
-            // Remove failed errands
             activeErrands.RemoveAll(e => e.status == ErrandStatus.Failed);
         }
 
@@ -210,11 +178,14 @@ namespace BOH
         {
             return activeErrands.Where(e => e.status == ErrandStatus.Active).ToList();
         }
+        
+        public bool HasActive(string errandId)
+        {
+            if (string.IsNullOrEmpty(errandId)) return false;
+            return GetActiveErrands().Exists(e =>
+                e != null && e.errandData != null &&
+                e.errandData.errandId == errandId &&
+                e.status == ErrandStatus.Active);
+        }
     }
-
-    // ScriptRole: Manages errand lifecycle and completion
-    // RelatedScripts: TriggerSystem, InventorySystem, ResourceSystem
-    // UsesSO: ErrandSO, GameEventSO
-    // ReceivesFrom: TriggerSystem, UI interactions
-    // SendsTo: InventorySystem, ResourceSystem, Journal
 }

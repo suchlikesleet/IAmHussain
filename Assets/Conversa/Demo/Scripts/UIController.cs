@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Conversa.Runtime.Events;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +12,8 @@ namespace Conversa.Demo.Scripts
         [SerializeField] private GameObject messageWindow;
         [SerializeField] private GameObject choiceWindow;
         [SerializeField] private Image avatarImage;
-        [SerializeField] private Text actorNameText;
-        [SerializeField] private Text messageText;
+        [SerializeField] private TextMeshProUGUI actorNameText;
+        [SerializeField] private TextMeshProUGUI messageText;
         [SerializeField] private Button nextMessageButton;
 
         [SerializeField] private GameObject choiceOptionButtonPrefab;

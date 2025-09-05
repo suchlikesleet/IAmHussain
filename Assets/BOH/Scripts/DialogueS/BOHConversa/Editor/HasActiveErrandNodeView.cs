@@ -1,11 +1,13 @@
-﻿using Conversa.Editor;
+﻿// Assets/BOH/Scripts/DialogueS/BOHConversa/Editor/HasActiveErrandNodeView.cs
+using System.Reflection;
+using Conversa.Editor;
 using Conversa.Runtime;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace BOH
+namespace BOH.Conversa
 {
-    public sealed class HasActiveErrandNodeView : BaseNodeView<HasActiveErrandNode>
+    public class HasActiveErrandNodeView : BaseNodeView<HasActiveErrandNode>
     {
         protected override string Title => "Has Active Errand?";
 
@@ -14,15 +16,20 @@ namespace BOH
 
         protected override void SetBody()
         {
-            /*var f = new ObjectField("Errand") { objectType = typeof(ErrandSO), allowSceneObjects = false };
-            f.value = ErrandNodeViewUtil.GetPrivate<HasActiveErrandNode, ErrandSO>(Data, "errand");
-            f.RegisterValueChangedCallback(evt =>
-            {
-                SetUndo("Set Errand");
-                ErrandNodeViewUtil.SetPrivate(Data, "errand", evt.newValue);
-                Save();
-            });
-            Body.Add(f);*/
+            var idFI  = typeof(HasActiveErrandNode).GetField("errandId", BindingFlags.NonPublic | BindingFlags.Instance);
+            var soFI  = typeof(HasActiveErrandNode).GetField("errand",   BindingFlags.NonPublic | BindingFlags.Instance);
+
+            var id = new TextField("Errand Id");
+            id.SetValueWithoutNotify(idFI?.GetValue(Data) as string ?? string.Empty);
+            id.RegisterValueChangedCallback(e => idFI?.SetValue(Data, e.newValue));
+
+            var so = new ObjectField("Errand (optional)") { objectType = typeof(ErrandSO) };
+            so.SetValueWithoutNotify(soFI?.GetValue(Data) as ErrandSO);
+            so.RegisterValueChangedCallback(e => soFI?.SetValue(Data, e.newValue as ErrandSO));
+
+            var box = new VisualElement(); box.AddToClassList("p-5");
+            box.Add(id); box.Add(so);
+            bodyContainer.Add(box);
         }
     }
 }

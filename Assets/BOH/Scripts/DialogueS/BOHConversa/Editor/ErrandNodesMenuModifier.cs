@@ -1,22 +1,38 @@
-﻿
-using BOH.Conversa;
-using Conversa.Editor;
+﻿using Conversa.Editor;
 using Conversa.Runtime;
 
-namespace BOH
+namespace BOH.Conversa
 {
-    public static class ErrandNodesMenuModifier
+    public class ErrandNodesMenuModifier
     {
         [NodeMenuModifier]
         private static void ModifyMenu(NodeMenuTree tree, Conversation conversation)
         {
-            // Order indices: group errands together
-            tree.AddGroup("My Errands",1);
-            tree.AddMenuEntry<AcceptErrandNodeView>("Accept Errand",               2);
-            tree.AddMenuEntry<AttemptCompleteErrandNodeView>("Attempt Complete",   2);
-            tree.AddMenuEntry<HasActiveErrandNodeView>("Has Active?",              2);
-            tree.AddMenuEntry<IsErrandCompletedNodeView>("Is Completed?",          2);
-            tree.AddMenuEntry<ErrandWindowOpenNodeView>("Window Open?",            2);
+            tree.AddGroup("Errands & Inventory");
+
+            // Errands
+            tree.AddMenuEntry<HasActiveErrandNodeView>("Has Active Errand?", 2);
+            tree.AddMenuEntry<AcceptErrandNodeView>("Accept Errand", 2);
+            tree.AddMenuEntry<ErrandCheckNodeView>("Errand Check", 2);
+            tree.AddMenuEntry<ErrandCompleteNodeView>("Complete Errand", 2);
+
+            // Inventory
+            tree.AddMenuEntry<InventoryCheckNodeView>("Inventory Check", 2);
+            tree.AddMenuEntry<InventoryConsumeNodeView>("Inventory Consume", 2);
+
+            // Contacts / Trust
+            tree.AddMenuEntry<TrustChangeNodeView>("Trust Change", 2);
+            
+            
+            tree.AddGroup("Story Gates");
+            tree.AddMenuEntry<HasFlagNodeView>("Has Flag?", 2);
+            tree.AddMenuEntry<TrustAtLeastNodeView>("Trust ≥ Min?", 2);
+            tree.AddMenuEntry<ChapterAtLeastNodeView>("Chapter ≥ Min?", 2);
+            tree.AddMenuEntry<SetFlagNodeView>("Set Flag", 2);
+            tree.AddMenuEntry<AdvanceChapterNodeView>("Advance Chapter", 2);
+
+            
+            
         }
     }
 }

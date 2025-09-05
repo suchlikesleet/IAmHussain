@@ -1,11 +1,12 @@
-﻿using Conversa.Editor;
+﻿using System.Reflection;
+using Conversa.Editor;
 using Conversa.Runtime;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace BOH.Conversa
 {
-    public sealed class AcceptErrandNodeView : BaseNodeView<AcceptErrandNode>
+    public class AcceptErrandNodeView : BaseNodeView<AcceptErrandNode>
     {
         protected override string Title => "Accept Errand";
 
@@ -14,16 +15,20 @@ namespace BOH.Conversa
 
         protected override void SetBody()
         {
-            /*var f = new ObjectField("Errand") { objectType = typeof(ErrandSO), allowSceneObjects = false };
-            var fi = typeof(AcceptErrandNode).GetField("errand", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            f.value = (ErrandSO)fi.GetValue(Data);
-            f.RegisterValueChangedCallback(evt =>
+            var fieldInfo = typeof(AcceptErrandNode).GetField("errand", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            var errandField = new ObjectField("Errand") { objectType = typeof(ErrandSO) };
+            errandField.SetValueWithoutNotify(fieldInfo?.GetValue(Data) as ErrandSO);
+            errandField.RegisterValueChangedCallback(e =>
             {
-                SetUndo("Set Errand");
-                fi.SetValue(Data, evt.newValue);
-                Save();
+                fieldInfo?.SetValue(Data, e.newValue as ErrandSO);
             });
-            Body.Add(f);*/
+
+            var wrapper = new VisualElement();
+            wrapper.AddToClassList("p-5");
+            wrapper.Add(errandField);
+
+            bodyContainer.Add(wrapper);
         }
     }
 }

@@ -1,19 +1,20 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using System;
 using System.Collections.Generic;
 using Conversa.Runtime.Events;
-using UnityEngine;
-using UnityEngine.UI;
 
-namespace BOH
+namespace BOH.Conversa
 {
     public class MyUIController : MonoBehaviour
     {
-        //DefaultUI controller
+        
         [SerializeField] private GameObject messageWindow;
         [SerializeField] private GameObject choiceWindow;
         [SerializeField] private Image avatarImage;
-        [SerializeField] private Text actorNameText;
-        [SerializeField] private Text messageText;
+        [SerializeField] private TextMeshProUGUI actorNameText;
+        [SerializeField] private TextMeshProUGUI messageText;
         [SerializeField] private Button nextMessageButton;
 
         [SerializeField] private GameObject choiceOptionButtonPrefab;
@@ -65,6 +66,12 @@ namespace BOH
         {
             messageWindow.SetActive(false);
             choiceWindow.SetActive(false);
+        }
+
+
+        public void Show()
+        {
+            messageWindow.SetActive(true);
         }
     }
 }

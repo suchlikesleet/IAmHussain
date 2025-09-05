@@ -48,6 +48,38 @@ namespace BOH
         [Header("Chain")]
         public ErrandSO followUpErrand;
         
+        [Header("Availability (Optional)")]
+        [Tooltip("If set, NPC/graph should only offer when all are present.")]
+        public string[] requiredFlags = System.Array.Empty<string>();
+
+        [Tooltip("If any is present, do NOT offer.")]
+        public string[] blockedFlags = System.Array.Empty<string>();
+
+        [Tooltip("Require these errands to be completed before offering this one.")]
+        public string[] requiredCompletedErrands = System.Array.Empty<string>();
+
+        [Tooltip("Minimum trust needed with the offering NPC (if you use trust gating).")]
+        public int minTrust = 0;
+
+        [Tooltip("Story/Chapter gating; -1 means 'no gate'.")]
+        public int chapterMin = -1;
+        public int chapterMax = -1;
+
+        [Tooltip("Controls re-offer/rehire cadence after completion.")]
+        public int cooldownDays = 0;
+
+        [Tooltip("Can this errand be completed more than once overall?")]
+        public bool repeatable = false;
+
+        [Tooltip("If repeatable, how many times at most? 0 = unlimited.")]
+        public int maxCompletions = 0;
+
+        [Tooltip("Higher = offered earlier when multiple are available.")]
+        public int priority = 0;
+
+        [Tooltip("Optional tag of which NPC typically offers this (pure metadata if you drive via graphs).")]
+        public string offeredByNpcId;
+        
         [System.Serializable]
         public class ItemRequirement
         {
