@@ -9,7 +9,8 @@ namespace BOH
     {
         public enum TriggerType
         {
-            NPC,        // Proximity to NPC
+            [System.Obsolete("Use ConversationStarter/ConversationZoneStarter for NPC interactions")] 
+            NPC,        // Deprecated: use ConversationStarter/ConversationZoneStarter
             Phone,      // Time-based phone call
             Ambient     // Area/condition based
         }
@@ -28,9 +29,10 @@ namespace BOH
         public int endHour = 22;
         public bool isRepeatable = false;
         
-        [Header("NPC Settings")]
-        public string npcName = "Grocer";
-        public float triggerRadius = 2f;
+        [Header("NPC Settings (Deprecated)")]
+        [Tooltip("Deprecated: NPC triggers are handled by ConversationStarter or ConversationZoneStarter.")]
+        [System.Obsolete("NPC triggers are deprecated; move to ConversationStarter/Zone")] public string npcName = "Grocer";
+        [System.Obsolete("NPC triggers are deprecated; move to ConversationStarter/Zone")] public float triggerRadius = 2f;
         
         [Header("Conversa")]
         [Tooltip("If true and a Conversation is assigned, the trigger starts this Conversa flow instead of the legacy prompt.")]

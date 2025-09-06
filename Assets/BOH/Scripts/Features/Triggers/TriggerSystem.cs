@@ -17,7 +17,6 @@ namespace BOH
         [Header("References")]
         [SerializeField] private OfferPrompt offerPromptUI;
         [SerializeField] private BOH.Conversa.MyConversaController conversaController;
-        [SerializeField] private Transform playerTransform;
         
         [Header("State")]
         [SerializeField] private List<string> triggeredToday = new List<string>();
@@ -26,7 +25,6 @@ namespace BOH
         private TimeSystem timeSystem;
         private ErrandSystem errandSystem;
         private InventorySystem inventorySystem; // Add this
-        private Dictionary<string, Transform> npcTransforms = new Dictionary<string, Transform>();
         private bool phoneCheckScheduled = false;
 
         private void OnEnable()
@@ -46,24 +44,15 @@ namespace BOH
             inventorySystem = FindObjectOfType<InventorySystem>(); // Add this
             if (conversaController == null)
                 conversaController = FindFirstObjectByType<BOH.Conversa.MyConversaController>();
-            
-            // Find all NPCs in scene
-            GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
-            foreach (var npc in npcs)
+
+            // Inform about deprecated NPC triggers
+            int npcCount = allTriggers != null ? allTriggers.Count(t => t != null && t.type == TriggerSO.TriggerType.NPC) : 0;
+            if (npcCount > 0)
             {
-                npcTransforms[npc.name] = npc.transform;
-                Debug.Log($"Registered NPC: {npc.name}");
+                Debug.LogWarning($"[TriggerSystem] {npcCount} NPC triggers present but ignored. Use ConversationStarter or ConversationZoneStarter on NPCs.");
             }
-            
-            // Get player reference if not assigned
-            if (playerTransform == null)
-            {
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                if (player != null)
-                    playerTransform = player.transform;
-            }
-            
-            Debug.Log($"TriggerSystem initialized with {allTriggers.Count} triggers");
+
+            Debug.Log($"TriggerSystem initialized with {allTriggers.Count} triggers (Phone/Ambient only)");
         }
 
         private void Update()
@@ -71,7 +60,6 @@ namespace BOH
             if (timeSystem == null) return;
             
             CheckPhoneTriggers();
-            CheckNPCTriggers();
             CheckAmbientTriggers();
         }
 
@@ -101,30 +89,7 @@ namespace BOH
             }
         }
 
-        private void CheckNPCTriggers()
-        {
-            if (playerTransform == null) return;
-            
-            foreach (var trigger in allTriggers.Where(t => t.type == TriggerSO.TriggerType.NPC))
-            {
-                if (!CanTrigger(trigger)) continue;
-                
-                // Check time window
-                string currentTime = timeSystem.GetTimeString();
-                int hour = int.Parse(currentTime.Substring(0, 2));
-                if (hour < trigger.startHour || hour >= trigger.endHour) continue;
-                
-                if (npcTransforms.TryGetValue(trigger.npcName, out Transform npcTransform))
-                {
-                    float distance = Vector3.Distance(playerTransform.position, npcTransform.position);
-                    if (distance <= trigger.triggerRadius)
-                    {
-                        ShowNPCOffer(trigger);
-                        break;
-                    }
-                }
-            }
-        }
+        // NPC triggers are deprecated: use ConversationStarter/ConversationZoneStarter instead.
 
         private void CheckAmbientTriggers()
         {
@@ -166,11 +131,7 @@ namespace BOH
             ShowOffer(trigger, "Phone Call");
         }
 
-        private void ShowNPCOffer(TriggerSO trigger)
-        {
-            Debug.Log($"NPC trigger: {trigger.triggerId} from {trigger.npcName}");
-            ShowOffer(trigger, trigger.npcName);
-        }
+        // NPC offers removed: handled by ConversationStarter on NPCs
 
         private void ShowAmbientOffer(TriggerSO trigger)
         {
@@ -257,7 +218,7 @@ namespace BOH
                             ShowPhoneOffer(trigger);
                             break;
                         case TriggerSO.TriggerType.NPC:
-                            ShowNPCOffer(trigger);
+                            Debug.LogWarning("[TriggerSystem] Manual NPC trigger ignored. Use ConversationStarter/ConversationZoneStarter.");
                             break;
                         case TriggerSO.TriggerType.Ambient:
                             ShowAmbientOffer(trigger);

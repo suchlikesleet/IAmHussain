@@ -8,9 +8,9 @@ This document summarizes the current architecture, what’s working, what change
 - Features:
   - Inventory: `BOH/Features/Inventory` (+ `UI/InventoryUIExtended.cs`)
   - Errands: `BOH/Features/Errands` (ErrandSystem, `StoryContext`)
-  - Triggers: `BOH/Features/Triggers` (TriggerSystem, `UI/OfferPrompt.cs`)
+  - Triggers: `BOH/Features/Triggers` (TriggerSystem – Phone & Ambient only, `UI/OfferPrompt.cs`)
   - Dialogue: `BOH/Features/Dialogue` (Conversa controllers + `BOHConversa/Runtime|Editor` nodes)
-  - NPC: `BOH/Features/NPC` (NPCInteraction)
+  - NPC: `BOH/Features/NPC` (ConversationStarter/ConversationZoneStarter, SpecialItemIndicator)
   - Journal: `BOH/Features/Journal` (JournalSystem)
   - Gifting: `BOH/Features/Gifting` (GiftingSystem)
   - Shop: `BOH/Features/Shop` (SimpleShop)
@@ -35,15 +35,15 @@ Note: Custom BOH asmdefs were removed to stabilize compile (single Assembly‑CS
   - ErrandSystem: active/completed lists, strict windows, follow‑up errands.
   - StoryContext: moved to Errands; helper for flag/errand/story checks.
 - Triggers & Dialogue
-  - TriggerSystem: NPC, Ambient, Phone scanning; for Phone triggers, starts Conversa if `TriggerSO.conversation` assigned.
-  - NPCInteraction: interacts via Conversa (`MyConversaController`, `ConversationSelector` or default conversation).
+  - TriggerSystem: Ambient & Phone scanning; for Phone triggers, starts Conversa if `TriggerSO.conversation` is assigned. NPC triggers are deprecated and ignored.
+  - NPC Conversations: use `ConversationStarter` and/or `ConversationZoneStarter`; `ConversationSelector` supports gating/priority. Use `SpecialItemIndicator` for equip/gift hints.
   - Conversa: controllers + custom nodes (AcceptErrand, ErrandCheck/Complete, InventoryCheck/Consume, GiveItem, Trust/Flag, Chapter).
 - UI
   - HUDController: time/resources; JournalPanel: opens on day end (stub text); OfferPrompt: legacy path (non‑Conversa).
 
 ## Conversa Integration – Current
 - Phone triggers: use Conversa when `TriggerSO.conversation` is set; otherwise fall back to OfferPrompt.
-- NPC: `ConversationStarter`/`NPCInteraction` drive graphs by proximity or input; `ConversationSelector` supports gating/priority.
+- NPC: `ConversationStarter`/`ConversationZoneStarter` drive graphs by proximity or input; `ConversationSelector` supports gating/priority; `SpecialItemIndicator` provides contextual cues.
 - Custom Nodes added: `GiveItemNode` (+ Editor view) under “Errands & Inventory”.
 - GameServices (for nodes): in `BOH/Features/Dialogue/BOHConversa/Runtime/`; use the included `GameServicesInstaller` in scene to assign Errands, Inventory, Contacts, Flags, Story.
 
@@ -55,6 +55,7 @@ Note: Custom BOH asmdefs were removed to stabilize compile (single Assembly‑CS
 - Journal content is a placeholder; integrate real summaries (completed/late errands, rewards, trust changes).
 - Ensure `GameServicesInstaller` exists in each gameplay scene (assigns services accessible by Conversa nodes).
 - Trigger time parsing: TriggerSystem uses hour extracted from `TimeSystem.GetTimeString()`; consider exposing numeric time API on `TimeSystem` to avoid string parsing fragility.
+ - NPC triggers: `TriggerSO.TriggerType.NPC`, `npcName`, and `triggerRadius` are marked Obsolete; migrate NPC interactions to ConversationStarter/Zone.
 - Namespace alignment: classes still under `BOH`; optional: align to folders (`BOH.Features.*`).
 - Tests: no `Assets/Tests`; consider adding EditMode tests for ErrandSystem & InventorySystem.
 - CI/build: no project build scripts included; manual build via Unity Editor or CLI.
@@ -72,7 +73,7 @@ Note: Custom BOH asmdefs were removed to stabilize compile (single Assembly‑CS
 4) Author and link the 10 gameplay scenarios (see `gameplay-scenarios.md`).
 5) Re‑introduce asmdefs incrementally once stable (Core → Data → one Feature at a time), verifying compile after each.
 6) Add lightweight bootstrapping for scene service setup and a minimal test plan (EditMode for Errand/Inventory).
-7) Content pass: verify all TriggerSO have correct windows, NPC names, and conversations; ensure no missing `MyConversaController` in scenes.
+7) Content pass: verify TriggerSO (Phone/Ambient) windows and conversations; ensure no `TriggerSO` of type NPC remain. NPCs should use ConversationStarter/Zone and SpecialItemIndicator as needed; ensure `MyConversaController` exists in scenes.
 
 ## Quick Verification Checklist
 - Scene has: MyConversaController, GameServicesInstaller, Systems_Root (Time/Resource/Errand/Inventory/Journal/Contact).
