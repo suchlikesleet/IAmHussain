@@ -6,10 +6,10 @@ using Conversa.Runtime;
 namespace BOH
 {
     /// <summary>
-    /// Attach to a trigger zone. Starts a Conversation automatically when the player enters.
+    /// Attach to a 2D trigger zone. Starts a Conversation automatically when the player enters.
     /// Useful for cutscene intros, doorways, etc.
     /// </summary>
-    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Collider2D))]
     public class ConversationZoneStarter : MonoBehaviour
     {
         public Conversation conversation;
@@ -22,8 +22,8 @@ namespace BOH
 
         private void Reset()
         {
-            var col = GetComponent<Collider>();
-            col.isTrigger = true;
+            var col = GetComponent<Collider2D>();
+            if (col != null) col.isTrigger = true;
         }
 
         private void Awake()
@@ -32,7 +32,7 @@ namespace BOH
                 conversaController = FindFirstObjectByType<MyConversaController>();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (_consumed && onlyOnce) return;
             if (!other.CompareTag("Player")) return;

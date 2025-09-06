@@ -5,10 +5,10 @@ using Conversa.Runtime;
 namespace BOH
 {
     /// <summary>
-    /// Attach to an NPC. Requires a trigger collider on this GameObject.
+    /// Attach to an NPC. Requires a 2D trigger collider on this GameObject.
     /// Starts a Conversa Conversation when the player is inside the trigger.
     /// </summary>
-    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Collider2D))]
     public class ConversationStarter : MonoBehaviour
     {
         [Header("Conversation")]
@@ -34,9 +34,9 @@ namespace BOH
 
         private void Reset()
         {
-            // Force collider to be trigger
-            var col = GetComponent<Collider>();
-            col.isTrigger = true;
+            // Force Collider2D to be trigger
+            var col = GetComponent<Collider2D>();
+            if (col != null) col.isTrigger = true;
         }
 
         private void Awake()
@@ -45,7 +45,7 @@ namespace BOH
                 conversaController = FindFirstObjectByType<MyConversaController>();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (!IsPlayer(other)) return;
             _playerInside = true;
@@ -57,7 +57,7 @@ namespace BOH
                 TryStartConversation();
         }
 
-        private void OnTriggerStay(Collider other)
+        private void OnTriggerStay2D(Collider2D other)
         {
             if (!IsPlayer(other)) return;
 
@@ -65,7 +65,7 @@ namespace BOH
                 TryStartConversation();
         }
 
-        private void OnTriggerExit(Collider other)
+        private void OnTriggerExit2D(Collider2D other)
         {
             if (!IsPlayer(other)) return;
             _playerInside = false;
@@ -73,7 +73,7 @@ namespace BOH
             if (promptUI) promptUI.SetActive(false);
         }
 
-        private bool IsPlayer(Collider col)
+        private bool IsPlayer(Collider2D col)
         {
             // Easiest: tag your player "Player"
             return col.CompareTag("Player");
@@ -91,17 +91,15 @@ namespace BOH
             if (promptUI) promptUI.SetActive(false);
         }
 
-        // Optional gizmo to see trigger in scene view
+        // Optional gizmo to see trigger in scene view (2D)
         private void OnDrawGizmosSelected()
         {
-            var col = GetComponent<Collider>();
+            var col = GetComponent<Collider2D>();
             if (col && col.isTrigger)
             {
                 Gizmos.color = new Color(0.2f, 0.7f, 1f, 0.25f);
-                Gizmos.matrix = transform.localToWorldMatrix;
-                if (col is SphereCollider s) Gizmos.DrawSphere(s.center, s.radius);
-                else if (col is BoxCollider b) Gizmos.DrawCube(b.center, b.size);
-                else if (col is CapsuleCollider c) Gizmos.DrawSphere(c.center, Mathf.Max(c.radius, c.height * 0.5f));
+                var b = col.bounds;
+                Gizmos.DrawWireCube(b.center, b.size);
             }
         }
     }

@@ -39,11 +39,15 @@ namespace BOH
 
         private void Start()
         {
-            timeSystem = FindObjectOfType<TimeSystem>();
-            errandSystem = FindObjectOfType<ErrandSystem>();
-            inventorySystem = FindObjectOfType<InventorySystem>(); // Add this
-            if (conversaController == null)
-                conversaController = FindFirstObjectByType<BOH.Conversa.MyConversaController>();
+             // Add this
+             if (conversaController == null)
+             {
+                 timeSystem = FindFirstObjectByType<TimeSystem>();
+                 errandSystem = FindFirstObjectByType<ErrandSystem>();
+                 inventorySystem = FindFirstObjectByType<InventorySystem>();
+                 conversaController = FindFirstObjectByType<BOH.Conversa.MyConversaController>();
+             }
+                
 
             // Inform about deprecated NPC triggers
             int npcCount = allTriggers != null ? allTriggers.Count(t => t != null && t.type == TriggerSO.TriggerType.NPC) : 0;

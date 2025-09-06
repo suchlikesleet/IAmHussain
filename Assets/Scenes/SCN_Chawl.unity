@@ -3990,7 +3990,6 @@ GameObject:
   - component: {fileID: 1351862153}
   - component: {fileID: 1351862152}
   - component: {fileID: 1351862150}
-  - component: {fileID: 1351862151}
   m_Layer: 5
   m_Name: Descriptions
   m_TagString: Untagged
@@ -4090,18 +4089,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1351862151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351862149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22d6436a87432de4d9a8278f12bf49b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TheraBytes.BetterUi.BetterContentSizeFitter
 --- !u!222 &1351862152
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5056,7 +5043,6 @@ GameObject:
   - component: {fileID: 1636384066}
   - component: {fileID: 1636384069}
   - component: {fileID: 1636384068}
-  - component: {fileID: 1636384067}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -5085,18 +5071,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -392.91675}
   m_SizeDelta: {x: -1086.028, y: -897.221}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1636384067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636384065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b54b16f2fcdba244b49be1f398b6562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TheraBytes.BetterUi.BetterAxisAlignedLayoutGroup
 --- !u!114 &1636384068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6167,7 +6141,6 @@ GameObject:
   - component: {fileID: 2090877847}
   - component: {fileID: 2090877850}
   - component: {fileID: 2090877849}
-  - component: {fileID: 2090877848}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -6198,18 +6171,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 357.918, y: 469.672}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2090877848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090877846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b54b16f2fcdba244b49be1f398b6562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TheraBytes.BetterUi.BetterAxisAlignedLayoutGroup
 --- !u!114 &2090877849
 MonoBehaviour:
   m_ObjectHideFlags: 0
