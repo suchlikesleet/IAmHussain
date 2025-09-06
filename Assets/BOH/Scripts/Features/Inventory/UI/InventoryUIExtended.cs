@@ -62,6 +62,7 @@ namespace BOH
         private void CreateItemSlot(InventorySystem.InventoryItem item)
         {
             if (itemSlotPrefab == null || itemListContainer == null) return;
+            if (item == null || item.itemData == null) return;
             
             GameObject slot = Instantiate(itemSlotPrefab, itemListContainer);
             
@@ -117,7 +118,8 @@ namespace BOH
             var equipped = inventorySystem?.GetEquippedItem();
             if (equipped != null)
             {
-                equippedItemText.text = $"Equipped: {equipped.itemData.displayName}";
+                var name = equipped.itemData != null ? equipped.itemData.displayName : "(Unknown Item)";
+                equippedItemText.text = $"Equipped: {name}";
             }
             else
             {

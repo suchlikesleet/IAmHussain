@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df559db012bb04b48a1e13def858eea8, type: 3}
   m_Name: TimeConfig
   m_EditorClassIdentifier: Assembly-CSharp::BOH.TimeConfigSO
-  secondsPerMinute: 0.1
+  secondsPerMinute: 0.05
   startHour: 6
   startMinute: 0
   endHour: 22

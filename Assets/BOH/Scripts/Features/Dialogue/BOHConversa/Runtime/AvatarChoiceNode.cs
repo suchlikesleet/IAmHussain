@@ -13,6 +13,7 @@ namespace BOH.Conversa
     [Port("Previous", "previous", typeof(BaseNode), Flow.In, Capacity.Many)]
     public class AvatarChoiceNode : BaseNode, IEventNode
     {
+        [ConversationProperty("Avatar", 0.25f, 0.6f, 0.95f)]
         [SerializeField] private BOH.AvatarSO avatar;
         [SerializeField] private string expressionKey = "";
         [SerializeField] private string message = "";
@@ -24,7 +25,8 @@ namespace BOH.Conversa
             new PortDefinition<BaseNode>("no",  "No")
         };
 
-        [ConversationProperty("Avatar", 0.25f, 0.6f, 0.95f)]
+        // Allow wiring the Avatar as a property input similar to AvatarMessageNode
+        [Slot("Avatar", "avatar", Flow.In, Capacity.One)]
         public BOH.AvatarSO Avatar
         {
             get => avatar;
@@ -61,7 +63,9 @@ namespace BOH.Conversa
 
             Option MakeOption(PortDefinition<BaseNode> pd) => new Option(pd.Label, () => HandleClickOption(pd));
 
-            var choiceEvent = new AvatarChoiceEvent(avatar, expressionKey, message, options.Select(MakeOption).ToList());
+            // Resolve avatar from slot if connected; fallback to serialized field
+            var finalAvatar = ProcessPort(conversation, "avatar", avatar);
+            var choiceEvent = new AvatarChoiceEvent(finalAvatar, expressionKey, message, options.Select(MakeOption).ToList());
             conversationEvents.OnConversationEvent.Invoke(choiceEvent);
         }
 
@@ -72,4 +76,3 @@ namespace BOH.Conversa
         }
     }
 }
-

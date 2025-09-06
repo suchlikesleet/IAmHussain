@@ -40,7 +40,7 @@ namespace BOH
         {
             if (item == null) return;
             
-            var existing = inventory.FirstOrDefault(i => i.itemData.itemId == item.itemId);
+            var existing = inventory.FirstOrDefault(i => i != null && i.itemData != null && i.itemData.itemId == item.itemId);
             
             if (existing != null && item.isStackable)
             {
@@ -62,7 +62,7 @@ namespace BOH
 
         public bool HasItem(string itemId, int count = 1)
         {
-            var item = inventory.FirstOrDefault(i => i.itemData.itemId == itemId);
+            var item = inventory.FirstOrDefault(i => i != null && i.itemData != null && i.itemData.itemId == itemId);
             return item != null && item.count >= count;
         }
 
@@ -89,6 +89,7 @@ namespace BOH
         public bool EquipItem(string itemId)
         {
             var item = inventory.FirstOrDefault(i => 
+                i != null && i.itemData != null &&
                 i.itemData.itemId == itemId && 
                 i.itemData.isEquippable);
             
@@ -114,10 +115,11 @@ namespace BOH
         {
             if (equippedSpecialItem != null)
             {
-                if (itemId == null || equippedSpecialItem.itemData.itemId == itemId)
+                if (itemId == null || (equippedSpecialItem.itemData != null && equippedSpecialItem.itemData.itemId == itemId))
                 {
                     equippedSpecialItem.isEquipped = false;
-                    Debug.Log($"Unequipped: {equippedSpecialItem.itemData.displayName}");
+                    var name = equippedSpecialItem.itemData != null ? equippedSpecialItem.itemData.displayName : "(unknown)";
+                    Debug.Log($"Unequipped: {name}");
                     equippedSpecialItem = null;
                     onItemEquipped?.Raise();
                     onInventoryChanged?.Raise();
@@ -132,7 +134,7 @@ namespace BOH
 
         public string GetEquippedTag()
         {
-            return equippedSpecialItem?.itemData.equipTag ?? "";
+            return equippedSpecialItem?.itemData?.equipTag ?? "";
         }
 
         public bool GiftItem(string itemId, string recipientId)
@@ -153,12 +155,12 @@ namespace BOH
         private void ClearDayScopedItems()
         {
             // Unequip if day-scoped
-            if (equippedSpecialItem != null && !equippedSpecialItem.itemData.isPersistent)
+            if (equippedSpecialItem != null && equippedSpecialItem.itemData != null && !equippedSpecialItem.itemData.isPersistent)
             {
                 UnequipItem();
             }
             
-            int removedCount = inventory.RemoveAll(i => !i.itemData.isPersistent);
+            int removedCount = inventory.RemoveAll(i => i != null && i.itemData != null && !i.itemData.isPersistent);
             if (removedCount > 0)
             {
                 Debug.Log($"Cleared {removedCount} day-scoped items");
@@ -173,7 +175,7 @@ namespace BOH
 
         public int GetItemCount(string itemId)
         {
-            var item = inventory.FirstOrDefault(i => i.itemData.itemId == itemId);
+            var item = inventory.FirstOrDefault(i => i != null && i.itemData != null && i.itemData.itemId == itemId);
             return item?.count ?? 0;
         }
     }
