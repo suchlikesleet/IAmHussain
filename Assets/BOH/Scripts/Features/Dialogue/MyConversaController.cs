@@ -1,16 +1,16 @@
+using Conversa.Demo;
+using UnityEngine;
 using Conversa.Runtime;
 using Conversa.Runtime.Events;
 using Conversa.Runtime.Interfaces;
-using Conversa.Demo;
-using UnityEngine;
 using UnityEngine.UI;
 
-namespace Conversa.Demo.Scripts
+namespace BOH.Conversa
 {
-	public class ConversaController : MonoBehaviour
-	{
-		[SerializeField] private Conversation conversation;
-		[SerializeField] private UIController uiController;
+    public class MyConversaController : MonoBehaviour
+    {
+        [SerializeField] private Conversation conversation;
+		[SerializeField] private MyUIController uiController;
 
 		[Header("Buttons")]
 		[SerializeField] private Button restartConversationButton;
@@ -22,9 +22,13 @@ namespace Conversa.Demo.Scripts
 
 		private void Start()
 		{
-			runner = new ConversationRunner(conversation);
-			runner.OnConversationEvent.AddListener(HandleConversationEvent);
-			restartConversationButton.onClick.AddListener(HandleRestartConversation);
+			//runner = new ConversationRunner(conversation);
+			//runner.OnConversationEvent.AddListener(HandleConversationEvent);
+			if (restartConversationButton != null)
+			{
+				restartConversationButton.onClick.AddListener(HandleRestartConversation);
+			}
+			
 			if (updateSavepointButton != null)
 			{
 				updateSavepointButton.onClick.AddListener(HandleUpdateSavepoint);
@@ -36,11 +40,61 @@ namespace Conversa.Demo.Scripts
 				loadSavepointButton.onClick.AddListener(HandleLoadSavepoint);
 			}
 		}
+		
+		public void StartConversation(Conversation convo)
+		{
+			if (convo == null) { Debug.LogWarning("[Conversa] StartConversation: null convo"); return; }
+			StopCurrentConversation();
 
+			conversation = convo;
+			runner = BuildRunner(convo);
+			if (runner == null)
+			{
+				Debug.LogError("[Conversa] Could not create ConversationRunner");
+				return;
+			}
+
+			uiController?.Show();
+			runner.Begin();
+			if (updateSavepointButton != null) updateSavepointButton.interactable = true;
+		}
+		
+		public void StopCurrentConversation()
+		{
+			if (runner == null) return;
+
+			runner.OnConversationEvent.RemoveListener(HandleConversationEvent);
+			runner = null;
+
+			uiController?.Hide();
+			if (updateSavepointButton != null) updateSavepointButton.interactable = false;
+		}
+
+		private ConversationRunner BuildRunner(Conversation convo)
+		{
+			var r = new ConversationRunner(convo);
+			r.OnConversationEvent.AddListener(HandleConversationEvent);
+			return r;
+		}
+		
 		private void HandleConversationEvent(IConversationEvent e)
 		{
-			switch (e)
-			{
+				switch (e)
+				{
+					case BOH.Conversa.AvatarChoiceEvent avatarChoice:
+					{
+						var actorDisplayName = avatarChoice.ActorName;
+						var sprite = avatarChoice.Avatar != null ? avatarChoice.Avatar.GetExpression(avatarChoice.ExpressionKey) : null;
+						uiController.ShowChoice(actorDisplayName, avatarChoice.Message, sprite, avatarChoice.Options);
+						break;
+					}
+					case BOH.Conversa.AvatarMessageEvent bohMsg:
+					{
+						var name = string.IsNullOrEmpty(bohMsg.ActorName) ? "" : bohMsg.ActorName;
+						var sprite = bohMsg.Avatar != null ? bohMsg.Avatar.GetExpression(bohMsg.ExpressionKey) : null;
+						uiController.ShowMessage(name, bohMsg.Message, sprite, () => bohMsg.Advance());
+					}
+					break;
 				case MessageEvent messageEvent:
 					HandleMessage(messageEvent);
 					break;
@@ -62,6 +116,7 @@ namespace Conversa.Demo.Scripts
 				case EndEvent _:
 					HandleEnd();
 					break;
+				
 			}
 		}
 
@@ -124,5 +179,7 @@ namespace Conversa.Demo.Scripts
 			if (updateSavepointButton != null)
 				updateSavepointButton.interactable = false;
 		}
-	}
+
+		
+    }
 }

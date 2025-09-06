@@ -22,6 +22,8 @@ MonoBehaviour:
   isRepeatable: 0
   npcName: Nurse
   triggerRadius: 2
+  useConversa: 1
+  conversation: {fileID: 11400000, guid: 0aba167095612dd48afacb15f548a101, type: 2}
   offerText: We need medicine urgently this morning. Can you deliver it?
   acceptText: Yes, I'll help
   declineText: Sorry, not now
