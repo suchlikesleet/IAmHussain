@@ -33,7 +33,7 @@ namespace BOH
 
         private void Start()
         {
-            errandSystem = FindObjectOfType<ErrandSystem>();
+            errandSystem = FindFirstObjectByType<ErrandSystem>();
             UpdateErrandsList();
         }
 

@@ -20,6 +20,7 @@ namespace BOH.Conversa
             tree.AddMenuEntry<InventoryCheckNodeView>("Inventory Check", 2);
             tree.AddMenuEntry<InventoryConsumeNodeView>("Inventory Consume", 2);
             tree.AddMenuEntry<GiveItemNodeView>("Give Item", 2);
+            tree.AddMenuEntry<EquippedCheckNodeView>("Equipped Check", 2);
 
             // Contacts / Trust
             tree.AddMenuEntry<TrustChangeNodeView>("Trust Change", 2);
@@ -34,6 +35,20 @@ namespace BOH.Conversa
 
             // Time
             tree.AddMenuEntry<TimeBeforeNodeView>("Time Before", 2);
+            tree.AddMenuEntry<TimeAfterNodeView>("Time After", 2);
+            tree.AddMenuEntry<TimeBetweenNodeView>("Time Between", 2);
+
+            // Resources
+            tree.AddGroup("Resources");
+            tree.AddMenuEntry<ResourceCheckNodeView>("Resource Check", 2);
+            tree.AddMenuEntry<ResourceChangeNodeView>("Resource Change", 2);
+
+            // Journal
+            tree.AddGroup("Journal");
+            tree.AddMenuEntry<JournalAddEntryNodeView>("Journal Add Entry", 2);
+
+            // Errands (Branch)
+            tree.AddMenuEntry<ErrandStateBranchNodeView>("Errand State Branch", 2);
 
             // Avatar
             tree.AddGroup("Avatar");
