@@ -32,6 +32,9 @@ namespace BOH.Conversa
             tree.AddMenuEntry<SetFlagNodeView>("Set Flag", 2);
             tree.AddMenuEntry<AdvanceChapterNodeView>("Advance Chapter", 2);
 
+            // Time
+            tree.AddMenuEntry<TimeBeforeNodeView>("Time Before", 2);
+
             // Avatar
             tree.AddGroup("Avatar");
             tree.AddMenuEntry<AvatarMessageNodeView>("Avatar Message", 2);
