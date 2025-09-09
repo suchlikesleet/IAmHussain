@@ -33,8 +33,8 @@ namespace BOH.Conversa
         }
 
         // Fully qualify UnityEngine.Object to avoid ambiguity.
-        protected static ErrandSystem   FindErrands()   => UnityEngine.Object.FindFirstObjectByType<ErrandSystem>();
-        protected static InventorySystem FindInventory() => UnityEngine.Object.FindFirstObjectByType<InventorySystem>();
-        protected static ContactSystem   FindContacts()  => UnityEngine.Object.FindFirstObjectByType<ContactSystem>();
+        protected static ErrandSystem   FindErrands()   => GameServices.Errands   ?? UnityEngine.Object.FindFirstObjectByType<ErrandSystem>();
+        protected static InventorySystem FindInventory() => GameServices.Inventory ?? UnityEngine.Object.FindFirstObjectByType<InventorySystem>();
+        protected static ContactSystem   FindContacts()  => GameServices.Contacts  ?? UnityEngine.Object.FindFirstObjectByType<ContactSystem>();
     }
 }

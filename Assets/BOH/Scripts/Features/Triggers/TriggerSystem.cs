@@ -20,7 +20,7 @@ namespace BOH
         
         [Header("State")]
         [SerializeField] private List<string> triggeredToday = new List<string>();
-        [SerializeField] private int currentDay = 1;
+        [SerializeField] private int currentDay = 0; // Will become 1 on first onDayStart
         
         private TimeSystem timeSystem;
         private ErrandSystem errandSystem;
@@ -39,14 +39,12 @@ namespace BOH
 
         private void Start()
         {
-             // Add this
-             if (conversaController == null)
-             {
-                 timeSystem = FindFirstObjectByType<TimeSystem>();
-                 errandSystem = FindFirstObjectByType<ErrandSystem>();
-                 inventorySystem = FindFirstObjectByType<InventorySystem>();
-                 conversaController = FindFirstObjectByType<BOH.Conversa.MyConversaController>();
-             }
+            // Resolve references (prefer GameServices, then auto-find)
+            timeSystem = GameServices.Time ?? timeSystem ?? FindFirstObjectByType<TimeSystem>();
+            errandSystem = GameServices.Errands ?? errandSystem ?? FindFirstObjectByType<ErrandSystem>();
+            inventorySystem = GameServices.Inventory ?? inventorySystem ?? FindFirstObjectByType<InventorySystem>();
+            if (conversaController == null)
+                conversaController = FindFirstObjectByType<BOH.Conversa.MyConversaController>();
                 
 
             // Inform about deprecated NPC triggers
@@ -78,10 +76,10 @@ namespace BOH
         private void CheckPhoneTriggers()
         {
             if (phoneCheckScheduled) return;
-            
-            string currentTime = timeSystem.GetTimeString();
-            int hour = int.Parse(currentTime.Substring(0, 2));
-            
+
+            int totalMinutes = timeSystem.GetTotalMinutes();
+            int hour = totalMinutes / 60;
+
             foreach (var trigger in allTriggers.Where(t => t.type == TriggerSO.TriggerType.Phone))
             {
                 if (CanTrigger(trigger) && hour >= trigger.startHour && hour < trigger.endHour)
@@ -98,9 +96,9 @@ namespace BOH
         private void CheckAmbientTriggers()
         {
             // Check time window for ambient triggers
-            string currentTime = timeSystem.GetTimeString();
-            int hour = int.Parse(currentTime.Substring(0, 2));
-            
+            int totalMinutes = timeSystem.GetTotalMinutes();
+            int hour = totalMinutes / 60;
+
             foreach (var trigger in allTriggers.Where(t => t.type == TriggerSO.TriggerType.Ambient))
             {
                 if (CanTrigger(trigger) && hour >= trigger.startHour && hour < trigger.endHour)

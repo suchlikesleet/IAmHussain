@@ -13,7 +13,7 @@ namespace BOH
         [Header("Events")]
         [SerializeField] private ScriptableEventInt onMinuteTick;
         [SerializeField] private ScriptableEventNoParam onDayStart;
-        [SerializeField] private ScriptableEventNoParam onDayEnd;
+        [SerializeField] private ScriptableEventNoParam onDayEnd; // Deprecated: day end is owned by GameStateManager
         
         [Header("Current Time")]
         [SerializeField] private int currentHour;
@@ -24,7 +24,7 @@ namespace BOH
 
         private void OnEnable()
         {
-            if (onDayStart != null) onDayStart.OnRaised += StartTime;;
+            if (onDayStart != null) onDayStart.OnRaised += StartTime;
             //if (onDayEnd != null) onDayEnd.OnRaised += StopTime;
         }
 
@@ -72,8 +72,11 @@ namespace BOH
             }
             
             onMinuteTick?.Raise(GetTotalMinutes());
-            
-            if (currentHour >= config.endHour && currentMinute >= config.endMinute)
+
+            // Use total minutes for robust comparison against end-of-day
+            int total = GetTotalMinutes();
+            int endTotal = (config.endHour * 60) + Mathf.Clamp(config.endMinute, 0, 59);
+            if (total >= endTotal)
             {
                 Debug.Log("Day time limit reached");
                 StopTime();
@@ -90,8 +93,10 @@ namespace BOH
         {
             isRunning = false;
             Debug.Log("Time system stopped");
-            onDayEnd?.Raise();
-            
+
+            // Delegate day-end transition to GameStateManager to avoid duplicate events
+            var gsm = UnityEngine.Object.FindFirstObjectByType<GameStateManager>();
+            gsm?.EndDay();
         }
 
         public string GetTimeString()

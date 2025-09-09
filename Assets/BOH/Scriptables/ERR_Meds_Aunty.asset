@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e02d6c74d2e07b48b56b555ae5c1fae, type: 3}
+  m_Name: ERR_Meds_Aunty
+  m_EditorClassIdentifier: Assembly-CSharp::BOH.ErrandSO
+  errandId: ERR_Meds_Aunty
+  errandTitle: "Morning Errand \u2014 Aunty's Medicine"
+  description: Buy medicine from the Corner Chemist and deliver it to Aunty before
+    09:00.
+  type: 0
+  startDay: 1
+  expiryDay: 1
+  startHour: 6
+  endHour: 9
+  itemsRequired:
+  - item: {fileID: 11400000, guid: 079d623432223ed48baf6ce4c3d88b04, type: 2}
+    count: 1
+  energyCost: 2
+  blessingsReward: 1
+  moneyReward: 5
+  itemRewards: []
+  onTimeOutcome: You completed the task on time.
+  lateOutcome: You were late, but it still helped.
+  failOutcome: You couldn't complete this task.
+  followUpErrand: {fileID: 0}
+  requiredFlags: []
+  blockedFlags: []
+  requiredCompletedErrands: []
+  minTrust: 0
+  chapterMin: -1
+  chapterMax: -1
+  cooldownDays: 0
+  repeatable: 0
+  maxCompletions: 0
+  priority: 10
+  offeredByNpcId: NPC_AuntyZainab

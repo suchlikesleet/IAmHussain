@@ -34,6 +34,7 @@ namespace BOH
         
         private InventorySystem inventorySystem;
         private TimeSystem timeSystem;
+        private ResourceSystem resourceSystem;
         private int currentDay = 1;
 
         private void OnEnable()
@@ -48,8 +49,9 @@ namespace BOH
 
         private void Start()
         {
-            inventorySystem = FindFirstObjectByType<InventorySystem>();
-            timeSystem = FindFirstObjectByType<TimeSystem>();
+            inventorySystem = GameServices.Inventory ?? FindFirstObjectByType<InventorySystem>();
+            timeSystem = GameServices.Time ?? FindFirstObjectByType<TimeSystem>();
+            resourceSystem = GameServices.Resources ?? FindFirstObjectByType<ResourceSystem>();
             Debug.Log("ErrandSystem initialized");
         }
 
@@ -81,15 +83,31 @@ namespace BOH
                 return false;
             }
 
-            // Check requirements
+            // Check item requirements
             if (!CheckRequirements(errand.errandData))
             {
                 Debug.Log($"Requirements not met for errand: {errandId}");
                 return false;
             }
 
+            // Check energy requirement (without spending yet)
+            if (resourceSystem != null && errand.errandData.energyCost > 0)
+            {
+                if (resourceSystem.GetEnergy() < errand.errandData.energyCost)
+                {
+                    Debug.Log($"Not enough energy for errand: {errandId}");
+                    return false;
+                }
+            }
+
             // Consume required items
             ConsumeRequirements(errand.errandData);
+
+            // Spend energy if applicable
+            if (resourceSystem != null && errand.errandData.energyCost > 0)
+            {
+                resourceSystem.SpendEnergy(errand.errandData.energyCost);
+            }
             
             // Check if late
             bool isLate = IsErrandLate(errand);
@@ -139,6 +157,15 @@ namespace BOH
                 if (reward.item != null)
                     inventorySystem.AddItem(reward.item, reward.count);
             }
+
+            // Apply resource rewards
+            if (resourceSystem != null)
+            {
+                if (errand.blessingsReward != 0)
+                    resourceSystem.AddBlessings(errand.blessingsReward);
+                if (errand.moneyReward != 0)
+                    resourceSystem.AddMoney(errand.moneyReward);
+            }
         }
 
         private bool IsErrandLate(ActiveErrand errand)
@@ -146,9 +173,7 @@ namespace BOH
             if (errand.errandData.type != ErrandSO.ErrandType.Strict)
                 return false;
             
-            string currentTime = timeSystem.GetTimeString();
-            int hour = int.Parse(currentTime.Substring(0, 2));
-            
+            int hour = (timeSystem != null) ? (timeSystem.GetTotalMinutes() / 60) : 0;
             return hour >= errand.errandData.endHour;
         }
 

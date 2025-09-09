@@ -27,13 +27,18 @@ namespace BOH
         private void OnEnable()
         {
             if (onDayEnd != null) onDayEnd.OnRaised += ClearDayScopedItems;
-            //onDayEnd.OnRaised += ClearDayScopedItems;
         }
 
         private void OnDisable()
         {
             if (onDayEnd != null) onDayEnd.OnRaised -= ClearDayScopedItems;
-            //onDayEnd.OnRaised -= ClearDayScopedItems;
+        }
+
+        private GiftingSystem giftingSystem;
+
+        private void Start()
+        {
+            giftingSystem = GameServices.Gifting ?? FindFirstObjectByType<GiftingSystem>();
         }
 
         public void AddItem(ItemSO item, int count = 1)
@@ -142,7 +147,6 @@ namespace BOH
             if (!HasItem(itemId, 1)) return false;
             
             // Process through GiftingSystem
-            var giftingSystem = FindFirstObjectByType<GiftingSystem>();
             if (giftingSystem != null && giftingSystem.ProcessGift(itemId, recipientId))
             {
                 ConsumeItem(itemId, 1);

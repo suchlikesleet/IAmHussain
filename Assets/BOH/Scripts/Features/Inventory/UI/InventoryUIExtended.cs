@@ -37,7 +37,7 @@ namespace BOH
 
         private void Start()
         {
-            inventorySystem = FindFirstObjectByType<InventorySystem>();
+            inventorySystem = GameServices.Inventory ?? FindFirstObjectByType<InventorySystem>();
             RefreshInventoryDisplay();
             RefreshEquippedDisplay();
         }
@@ -80,6 +80,8 @@ namespace BOH
                 string equipped = item.isEquipped ? " [E]" : "";
                 string persistent = item.itemData.isPersistent ? "◆" : "○";
                 nameText.text = $"{persistent} {item.itemData.displayName}{equipped}";
+                // Override with clean, ASCII-only persistent marker
+                nameText.text = $"{(item.itemData.isPersistent ? "(P) " : string.Empty)}{item.itemData.displayName}{equipped}";
             }
             
             if (countText != null)

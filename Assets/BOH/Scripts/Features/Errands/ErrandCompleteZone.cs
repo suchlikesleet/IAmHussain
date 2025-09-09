@@ -12,7 +12,7 @@ namespace BOH
 
         private void Start()
         {
-            errandSystem = FindFirstObjectByType<ErrandSystem>();
+            errandSystem = GameServices.Errands ?? FindFirstObjectByType<ErrandSystem>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

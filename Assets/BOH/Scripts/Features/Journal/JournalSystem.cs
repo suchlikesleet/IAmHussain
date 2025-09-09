@@ -31,7 +31,7 @@ namespace BOH
 
         private void Start()
         {
-            timeSystem = FindFirstObjectByType<TimeSystem>();
+            timeSystem = GameServices.Time ?? FindFirstObjectByType<TimeSystem>();
         }
 
         public void AddSpecialEntry(string content)

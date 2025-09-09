@@ -21,8 +21,13 @@ namespace BOH
         private Action onDecline;
         private float hideTimer;
 
+        // Pause integration
+        private GameStateManager gameStateManager;
+        private bool pausedByPrompt = false;
+
         private void Start()
         {
+            gameStateManager = FindFirstObjectByType<GameStateManager>();
             if (acceptButton != null)
                 acceptButton.onClick.AddListener(OnAcceptClicked);
             
@@ -36,7 +41,8 @@ namespace BOH
         {
             if (promptPanel != null && promptPanel.activeSelf)
             {
-                hideTimer -= Time.deltaTime;
+                // Use unscaled time so auto-hide works during pause
+                hideTimer -= Time.unscaledDeltaTime;
                 if (hideTimer <= 0)
                 {
                     OnDeclineClicked(); // Auto-decline if no response
@@ -59,9 +65,14 @@ namespace BOH
             
             promptPanel.SetActive(true);
             hideTimer = autoHideDelay;
-            
-            // Pause game while showing offer
-            Time.timeScale = 0f;
+
+            // Pause the game in a reversible way via GameStateManager
+            pausedByPrompt = false;
+            if (gameStateManager != null && !gameStateManager.IsPaused())
+            {
+                gameStateManager.TogglePause();
+                pausedByPrompt = true;
+            }
         }
 
         private void OnAcceptClicked()
@@ -82,8 +93,14 @@ namespace BOH
         {
             if (promptPanel != null)
                 promptPanel.SetActive(false);
-            
-            Time.timeScale = 1f;
+
+            // Only unpause if we paused it here
+            if (pausedByPrompt && gameStateManager != null && gameStateManager.IsPaused())
+            {
+                gameStateManager.TogglePause();
+            }
+            pausedByPrompt = false;
+
             onAccept = null;
             onDecline = null;
         }

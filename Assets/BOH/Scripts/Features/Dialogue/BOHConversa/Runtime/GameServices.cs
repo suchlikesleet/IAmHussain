@@ -9,5 +9,9 @@ namespace BOH
         public static ContactSystem Contacts;
         public static IFlagService Flags;
         public static IStoryService Story;
+        public static ResourceSystem Resources;
+        public static GiftingSystem Gifting;
+        public static JournalSystem Journal;
+        public static TimeSystem Time;
     }
 }

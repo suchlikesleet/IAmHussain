@@ -41,8 +41,8 @@ namespace BOH
 
         private void Start()
         {
-            inventorySystem = FindFirstObjectByType<InventorySystem>();
-            giftingSystem = FindFirstObjectByType<GiftingSystem>();
+            inventorySystem = GameServices.Inventory ?? FindFirstObjectByType<InventorySystem>();
+            giftingSystem = GameServices.Gifting ?? FindFirstObjectByType<GiftingSystem>();
 
             var player = GameObject.FindGameObjectWithTag("Player");
             if (player != null) playerTransform = player.transform;
@@ -121,4 +121,3 @@ namespace BOH
         }
     }
 }
-

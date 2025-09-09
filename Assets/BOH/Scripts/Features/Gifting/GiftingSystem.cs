@@ -19,9 +19,9 @@ namespace BOH
 
         private void Start()
         {
-            resourceSystem = FindFirstObjectByType<ResourceSystem>();
-            contactSystem = FindFirstObjectByType<ContactSystem>();
-            journalSystem = FindFirstObjectByType<JournalSystem>();
+            resourceSystem = GameServices.Resources ?? FindFirstObjectByType<ResourceSystem>();
+            contactSystem  = GameServices.Contacts  ?? FindFirstObjectByType<ContactSystem>();
+            journalSystem  = GameServices.Journal   ?? FindFirstObjectByType<JournalSystem>();
         }
 
         public bool ProcessGift(string itemId, string recipientId)
